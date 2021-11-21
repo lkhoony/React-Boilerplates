@@ -1,20 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+// createStore와 rootReducer 불러오기
 import {createStore} from "redux";
 import rootReducer from './reducers';
+
+// provider 불러오기
+import {Provider} from "react-redux";
 
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(rootReducer);
-console.log(store.getState());
+// **** 리덕스 개발자도구 적용
+const devTools =
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const store = createStore(rootReducer, devTools);
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    <Provider store={store}>
+        <App />
+    </Provider>,
   document.getElementById('root')
 );
 
