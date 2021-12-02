@@ -1,10 +1,10 @@
 import React from 'react'
-import './style.css';
+import style from './style.css';
+import { hot } from 'react-hot-loader/root'
 
 const App = () =>{
     return(
-        <div className="title">hello, webpack!</div>
+        <div className={style.title}>hello, webpack!!!!</div>
     )
 }
-
-export default App;
+export default hot(App);

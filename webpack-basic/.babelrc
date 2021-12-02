@@ -1,6 +1,9 @@
 {
+  // babel은 es6에서 es5로 자바스크립트를 변환해주는 역할
   "presets": [
     "@babel/preset-env",
     "@babel/preset-react"
-  ]
+  ],
+
+  "plugins": ["react-hot-loader/babel"]
 }
