@@ -6,13 +6,17 @@
 
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-prop-types" : "^0.4.0",
+    "react-router-dom" : "^6.0.2",
+    "semantic-ui-react" : "^2.0.4"
   },
 
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-react": "^7.16.0",
+    "@babel/preset-stage-1": "^7.8.3",
     "webpack": "^5.64.2",
     "webpack-cli": "^4.9.1",
     "webpack-dev-server": "^4.5.0",
@@ -24,11 +28,12 @@
     "style-loader": "^3.3.1",
     "sass-loader": "^12.3.0",
     "node-sass": "^6.0.1",
-    "mini-css-extract-plugin": "^2.4.5"
+    "mini-css-extract-plugin": "^2.4.5",
+    "react-hot-loader": "^4.13.0"
   },
 
   "scripts": {
-    "start": "webpack-dev-server --hot",
-    "build": "webpack"
+    "start": "webpack-dev-server --config configs/webpack.config.dev.js --hot",
+    "build": "webpack --config configs/webpack.config.prod.js"
   }
 }
