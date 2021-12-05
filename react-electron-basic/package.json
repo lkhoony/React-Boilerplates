@@ -1,0 +1,103 @@
+{
+  "name": "excel-app",
+  "version": "1.0.0",
+  "main": "public/main.js",
+  "license": "MIT",
+  "homepage": "./",
+
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-prop-types" : "^0.4.0",
+    "react-router-dom" : "^6.0.2",
+    "semantic-ui-react" : "^2.0.4"
+  },
+
+  "devDependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "^7.16.0",
+    "@babel/preset-stage-1": "^7.8.3",
+    "webpack": "^5.64.2",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0",
+    "babel-loader": "^8.2.3",
+    "html-loader": "^3.0.1",
+    "html-webpack-plugin": "^5.5.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.5.1",
+    "style-loader": "^3.3.1",
+    "sass-loader": "^12.3.0",
+    "node-sass": "^6.0.1",
+    "mini-css-extract-plugin": "^2.4.5",
+    "react-hot-loader": "^4.13.0",
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
+    "concurrently": "^6.4.0",
+    "wait-on": "^6.0.0",
+    "cross-env": "^7.0.3"
+  },
+
+  "scripts": {
+    "react-start": "cross-env PORT=3000 BROWSER=none webpack-dev-server --config configs/webpack.config.dev.js --hot",
+    "react-build": "webpack --config configs/webpack.config.prod.js",
+    "electron-start" : "wait-on http://localhost:3000 && cross-env MODE=dev electron .",
+    "electron-build-osx": "electron-builder --publish=always --mac",
+    "electron-build-linux32": "electron-builder --publish=always --linux --ia32",
+    "electron-build-linux64": "electron-builder --publish=always --linux --x64",
+    "electron-build-win32": "electron-builder --publish=always --win --ia32",
+    "electron-build-win64": "electron-builder --publish=always --win --x64",
+    "start" : "concurrently \"yarn react-start\" \"yarn electron-start\"",
+    "build-osx" : "yarn react-build && yarn electron-build-osx",
+    "build-linux32" : "yarn react-build && yarn electron-build-linux32",
+    "build-linux64" : "yarn react-build && yarn electron-build-linux64",
+    "build-win32" : "yarn react-build && yarn electron-build-win32",
+    "build-win64" : "yarn react-build && yarn electron-build-win64"
+  },
+
+  "build": {
+    "productName": "ExcelApp",
+    "appId": "com.lkhoony.excelApp",
+    "asar": true,
+    "protocols" : {
+      "name" : "excelApp",
+      "schemes" : ["excelApp"]
+    },
+    "mac": {
+      "target": [
+        "default"
+      ],
+      "icon": "./resources/installer/Icon.icns"
+    },
+    "dmg": {
+      "title": "HelloElectron",
+      "icon": "./resources/installer/Icon.icns"
+    },
+    "win": {
+      "target": [
+        "zip",
+        "nsis"
+      ],
+      "icon": "./resources/installer/Icon.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "rpm",
+        "zip",
+        "tar.gz"
+      ],
+      "icon": "./resources/linuxicon"
+    },
+    "nsis":{
+      "oneClick" : false,
+      "allowToChangeInstallationDirectory" :true
+    },
+    "directories": {
+      "buildResources": "resources/installer/",
+      "output": "release/",
+      "app": "."
+    }
+  }
+}
