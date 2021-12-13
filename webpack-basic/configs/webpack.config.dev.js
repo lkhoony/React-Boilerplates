@@ -92,7 +92,7 @@ module.exports = {
              * - MiniCssExtractPlugin : css 파일 요청, 해당 문서가 요청하는 파일만 가져온다는 점에서 스타일 태그에 비해 좋음
              */
             {
-                test : /\.css$/,
+                test: /\.global\.css$/,
                 use : [
                     {
                         loader: 'style-loader'
@@ -101,6 +101,7 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             modules : {
+                                exportLocalsConvention : 'camelCase',
                                 localIdentName: '[name]__[local]__[hash:base64:5]'
                             },
                             sourceMap: true
@@ -108,6 +109,48 @@ module.exports = {
                     }
                 ]
             },
+
+            {
+                test: /^((?!\.global).)*\.css$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules : {
+                                exportLocalsConvention : 'camelCase',
+                                localIdentName: '[name]__[local]__[hash:base64:5]'
+                            },
+                            sourceMap: true
+                        }
+                    }
+                ]
+            },
+            // SASS support - compile all other .scss files and pipe it to style.css
+            {
+                test: /^((?!\.global).)*\.(scss|sass)$/,
+                use: [
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules : {
+                                exportLocalsConvention : 'camelCase',
+                                localIdentName: '[name]__[local]__[hash:base64:5]'
+                            },
+                            sourceMap: true
+                        }
+                    },
+                    {
+                        loader: 'sass-loader'
+                    }
+                ]
+            }
+
             // {
             //     // css를 추출해서 파일로 저장
             //     test: /\.css$/,
