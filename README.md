@@ -107,7 +107,7 @@ yarn start
 
 
 - 빌드
-- 빌드 이후 release 디렉토리 확인
+- release 디렉토리에 실행 및 설치 파일 생성
 ```yarn
 yarn build-osx // for mac
 yarn build-linux32" // for linux32",
