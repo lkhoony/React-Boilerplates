@@ -1,5 +1,5 @@
 {
-  "name": "excel-app",
+  "name": "react-electron-boilerplate",
   "version": "1.0.0",
   "main": "public/main.js",
   "license": "MIT",
@@ -55,12 +55,12 @@
   },
 
   "build": {
-    "productName": "ExcelApp",
-    "appId": "com.lkhoony.excelApp",
+    "productName": "ReactElectronBoilerplate",
+    "appId": "com.lkhoony.reactElectronBoilerplate",
     "asar": true,
     "protocols" : {
-      "name" : "excelApp",
-      "schemes" : ["excelApp"]
+      "name" : "reactElectronBoilerplate",
+      "schemes" : ["reactElectronBoilerplate"]
     },
     "mac": {
       "target": [
